@@ -33,13 +33,13 @@ public class ProductsService {
 
     public List<Integer> getAllProducts() {
         log.warn( "START LOAD DATA" );
-        loadData();
+        loadProductData();
         log.warn( "END LOAD DATA" );
         orderProducts();
         return checkStockages.checkStocks( products, sizes, stocks);
     }
 
-    private void loadData() {
+    private void loadProductData() {
         try {
             products = productsRepository.findAll();
             List<Integer> productsId = products.stream().map( Product::getId ).toList();
